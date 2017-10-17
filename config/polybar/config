@@ -1,0 +1,255 @@
+[settings]
+throttle-output = 5
+throttle-output-for = 10
+throttle-input-for = 30
+screenchange-reload = false
+
+[colors]
+background = #2f1e2e
+foreground = #a39e9b
+red = #ef6155
+green = #48b685
+yellow = #fec418
+blue = #06b6ef
+purple = #815ba4
+cyan = #5bc4bf
+white = #e7e9db
+
+[bar/top]
+monitor = ${env:MONITOR:LVDS1}
+top = true
+width = 100%
+height = 20
+offset-x = 0
+offset-y = 0
+radius = 0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+
+padding-left = 1
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = Hack:size=9;1
+
+modules-left = i3
+modules-center = xwindow
+modules-right = date
+
+#tray-position = right
+#tray-padding = 5
+#tray-offset-y = 0%
+#tray-offset-x = 0%
+#tray-maxsize = 18
+#tray-detached = true
+#tray-transparent = false
+#tray-color = #1D1F21
+
+wm-restack = i3
+override-redirect = false
+
+[bar/bottom]
+monitor = ${env:MONITOR:LVDS1}
+bottom = true
+width = 100%
+height = 20
+offset-x = 0
+offset-y = 0
+radius = 0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+
+padding-left = 1
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = Hack:size=9;1
+
+modules-left = filesystem temperature memory cpu
+modules-right = volume battery wireless-network
+separator = |
+
+#tray-position = right
+#tray-padding = 5
+#tray-offset-y = 0%
+#tray-offset-x = 0%
+#tray-maxsize = 18
+#tray-detached = true
+#tray-transparent = false
+#tray-color = #1D1F21
+
+wm-restack = i3
+override-redirect = false
+
+[module/i3]
+type = internal/i3
+label-unfocused-background = ${colors.background}
+label-unfocused-foreground = ${colors.foreground}
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = ${colors.white}
+
+label-focused = %index%
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.background}
+label-focused-underline = ${colors.cyan}
+label-focused-padding = 2
+
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+label-visible = %index%
+label-visible-underline = ${colors.white}
+label-visible-padding = 2
+
+label-urgent = %index%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.background}
+label-urgent-underline = ${colors.red}
+label-urgent-padding = 2
+
+[module/xwindow]
+type = internal/xwindow
+label-maxlen = 100
+
+[module/date]
+type = internal/date
+interval = 5
+
+format = <label>
+format-prefix-foreground = ${colors.white}
+
+label = %date% %time%
+
+date = "%d-%m-%Y"
+time = "%H:%M"
+
+[module/volume]
+type = internal/volume
+
+format-volume = VOL: <label-volume> <bar-volume>
+format-volume-foreground = ${colors.white}
+label-volume-foreground = ${colors.foreground}
+
+format-muted = VOL: <label-muted>
+format-muted-foreground = ${colors.white}
+label-muted = MUTED
+label-muted-foreground = ${colors.red}
+
+bar-volume-width = 20
+bar-volume-foreground = ${colors.foreground}
+bar-volume-gradient = false
+bar-volume-indicator = ~
+bar-volume-indicator-font = 0
+bar-volume-indicator-foreground = ${colors.cyan}
+bar-volume-fill = ~
+bar-volume-fill-font = 0
+bar-volume-fill-foreground = ${colors.cyan}
+bar-volume-empty = -
+bar-volume-empty-font = 0
+bar-volume-empty-foreground = ${colors.foreground}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 65
+
+format = TEMP: <label>
+format-foreground = ${colors.white}
+format-warn = TEMP: <label-warn>
+
+label = %temperature%
+label-foreground = ${colors.foreground}
+label-warn = %temperature% WARN
+label-warn-foreground = ${colors.red}
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[module/battery]
+type = internal/battery
+full-at = 100
+
+battery = BAT0
+adapter = ADP1
+poll-interval = 5
+
+time-format = %H:%M
+
+format-charging = BAT: <label-charging>
+format-discharging = BAT: <label-discharging>
+format-full = BAT: <label-full>
+
+format-charging-foreground = ${colors.white}
+format-discharging-foreground = ${colors.white}
+format-full-foreground = ${colors.white}
+
+label-charging = %percentage%% CHARGE %time%
+label-discharging = %percentage%% %time%
+label-full = %percentage%%
+
+label-charging-foreground = ${colors.foreground}
+label-discharging-foreground = ${colors.foreground}
+label-full-foreground = ${colors.green}
+
+[module/wireless-network]
+type = internal/network
+interface = wlp3s0
+
+interval = 5.0
+accumulate-stats = true
+format-connected = WIFI: <label-connected>
+format-connected-foreground = ${colors.white}
+format-disconnected = WIFI: <label-disconnected>
+
+label-connected = %essid% (%local_ip%)
+label-connected-foreground = ${colors.foreground}
+
+label-disconnected = NONE
+label-disconnected-foreground = ${colors.red}
+
+
+[module/cpu]
+type = internal/cpu
+
+format = CPU: <label>
+format-foreground = ${colors.white}
+
+label = %percentage-cores%
+label-foreground = ${colors.foreground}
+
+[module/memory]
+type = internal/memory
+
+format = MEM: <label>
+format-foreground = ${colors.white}
+
+label-foreground = ${colors.foreground}
+
+[module/filesystem]
+type = internal/fs
+
+mount-0 = /
+
+interval = 10
+fixed-values = true
+
+format-mounted = DISK: <label-mounted>
+format-mounted-foreground = ${colors.white}
+
+label-mounted = %percentage_used%% of %total% used on %mountpoint%
+label-mounted-foreground = ${colors.foreground}
