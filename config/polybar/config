@@ -95,6 +95,7 @@ override-redirect = false
 
 [module/i3]
 type = internal/i3
+
 label-unfocused-background = ${colors.background}
 label-unfocused-foreground = ${colors.foreground}
 
@@ -102,20 +103,20 @@ label-mode = %mode%
 label-mode-padding = 2
 label-mode-background = ${colors.white}
 
-label-focused = %index%
+label-focused = %name%
 label-focused-foreground = ${colors.foreground}
 label-focused-background = ${colors.background}
 label-focused-underline = ${colors.cyan}
 label-focused-padding = 2
 
-label-unfocused = %index%
+label-unfocused = %name%
 label-unfocused-padding = 2
 
-label-visible = %index%
+label-visible = %name%
 label-visible-underline = ${colors.white}
 label-visible-padding = 2
 
-label-urgent = %index%
+label-urgent = %name%
 label-urgent-foreground = ${colors.foreground}
 label-urgent-background = ${colors.background}
 label-urgent-underline = ${colors.red}
@@ -139,6 +140,8 @@ time = "%H:%M"
 
 [module/volume]
 type = internal/volume
+
+mapped = true
 
 format-volume = VOL: <label-volume> <bar-volume>
 format-volume-foreground = ${colors.white}
@@ -198,9 +201,9 @@ format-charging-foreground = ${colors.white}
 format-discharging-foreground = ${colors.white}
 format-full-foreground = ${colors.white}
 
-label-charging = %percentage%% CHARGE %time%
+label-charging = %percentage%% %time% CHARGE
 label-discharging = %percentage%% %time%
-label-full = %percentage%%
+label-full = %percentage%% FULL
 
 label-charging-foreground = ${colors.foreground}
 label-discharging-foreground = ${colors.foreground}
